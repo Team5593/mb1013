@@ -7,13 +7,25 @@ MB1013_Pulse::MB1013_Pulse(DigitalInput *input): input(input), output(output)
 
 double MB1013_Pulse::Get()
 {
+	bool timeout_start;
+
 	output->Set(true); // enable sensor
 
-	while (input->Get() == false);
+	timeout_start = getTime();
+	while (input->Get() == false)
+	{
+		if (getTime() - timeout_start) >= timeout
+			return -1;
+	}
 
 	double start_time = getTime();
 
-	while (input->Get() == true);
+	timeout_start = getTime();
+	while (input->Get() == false)
+	{
+		if (getTime() - timeout_start) >= timeout
+			return -1;
+	}
 
 	double end_time = getTime();
 
