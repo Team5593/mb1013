@@ -11,11 +11,11 @@ double MB1013_Pulse::Get()
 
 	while (input->Get() == false);
 
-	double start_time = Timer::GetFPGATimestamp();
+	double start_time = getTime();
 
 	while (input->Get() == true);
 
-	double end_time = Timer::GetFPGATimestamp();
+	double end_time = getTime();
 
 	double reading = end_time - start_time;
 	reading /= 1000000; // convert from seconds to uS
@@ -24,4 +24,9 @@ double MB1013_Pulse::Get()
 	output->Set(false); // disable sensor
 
 	return reading;
+}
+
+inline double MB1013_Pulse::getTime()
+{
+	return Timer::GetFPGATimestamp();
 }

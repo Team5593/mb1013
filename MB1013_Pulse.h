@@ -18,4 +18,7 @@ private:
 	DigitalOutput *output;
 
 	double timeout = 0.2;
+
+	// helper functions
+	double getTime();
 };
