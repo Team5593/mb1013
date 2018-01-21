@@ -12,7 +12,6 @@ double MB1013_Analog::Get()
 	if isEnabled == false
 		SetEnabled(true)
 
-	// Todo: math to make this value meaningful and not just raw
 	auto value = (input.Get() / 1023) * 5;
 
 	if isEnabled == false
