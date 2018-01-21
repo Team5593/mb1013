@@ -1,10 +1,9 @@
 #pragma once
 
-#include "MB1013_Base.h"
 #include <AnalogInput.h>
 #include <DigitalOutput.h>
 
-class MB1013_Analog: public MB1013_Base
+class MB1013_Analog
 {
 public:
 	MB1013_Analog(AnalogInput *input, DigitalOutput *enable);

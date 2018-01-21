@@ -1,6 +1,8 @@
 #include "MB1013_Pulse.h"
 
-MB1013_Pulse::MB1013_Pulse(DigitalInput *input): input(input), output(output)
+MB1013_Pulse::MB1013_Pulse(DigitalInput *input, DigitalOutput *output):
+	input(input),
+	output(output)
 {
 	output->Set(false);
 }
@@ -14,7 +16,7 @@ double MB1013_Pulse::Get()
 	timeout_start = getTime();
 	while (input->Get() == false)
 	{
-		if (getTime() - timeout_start) >= timeout
+		if (getTime() - timeout_start >= timeout)
 			return -1;
 	}
 
@@ -23,7 +25,7 @@ double MB1013_Pulse::Get()
 	timeout_start = getTime();
 	while (input->Get() == false)
 	{
-		if (getTime() - timeout_start) >= timeout
+		if (getTime() - timeout_start >= timeout)
 			return -1;
 	}
 

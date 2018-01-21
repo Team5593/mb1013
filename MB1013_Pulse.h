@@ -1,15 +1,14 @@
 #pragma once
 
-#include "MB1013_Base.h"
 #include <DigitalInput.h>
 #include <DigitalOutput.h>
-#include <time.h>
+#include <Timer.h>
 
-class MB1301_Pulse: public MB1013_Base
+class MB1013_Pulse
 {
 public:
-	MB1301_Pulse(DigitalInput *input, DigitalOutput *output);
-	~MB1301_Pulse();
+	MB1013_Pulse(DigitalInput *input, DigitalOutput *output);
+	~MB1013_Pulse();
 
 	double Get(); // returns distance in meters
 

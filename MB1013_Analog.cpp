@@ -9,13 +9,13 @@ MB1013_Analog::MB1013_Analog(AnalogInput *input, DigitalOutput *enable):
 
 double MB1013_Analog::Get()
 {
-	if isEnabled == false
-		SetEnabled(true)
+	if (isEnabled == false)
+		SetEnabled(true);
 
-	auto value = (input.Get() / 1023) * 5;
+	auto value = input->GetVoltage() * 5;
 
-	if isEnabled == false
-		SetEnabled(false)
+	if (isEnabled == false)
+		SetEnabled(false);
 
 	return value;
 }
