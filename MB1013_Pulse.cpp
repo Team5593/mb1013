@@ -1,17 +1,17 @@
 #include "MB1013_Pulse.h"
 
-MB1013_Pulse::MB1013_Pulse(DigitalInput *input, DigitalOutput *output):
+MB1013_Pulse::MB1013_Pulse(DigitalInput *input, DigitalOutput *enable):
 	input(input),
-	output(output)
+	enable(enable)
 {
-	output->Set(false);
+	enable->Set(false);
 }
 
 double MB1013_Pulse::Get()
 {
 	bool timeout_start;
 
-	output->Set(true); // enable sensor
+	enable->Set(true); // enable sensor
 
 	timeout_start = getTime();
 	while (input->Get() == false)
@@ -35,7 +35,7 @@ double MB1013_Pulse::Get()
 	reading /= 1000000; // convert from seconds to uS
 	reading *= 1000; // convert from mm to meters
 
-	output->Set(false); // disable sensor
+	enable->Set(false); // disable sensor
 
 	return reading;
 }
